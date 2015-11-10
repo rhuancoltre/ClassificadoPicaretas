@@ -11,3 +11,10 @@
 <meta charset="utf-8" />
 <!-- Bootstrap core CSS -->
 <link href="/Picaretas/css/bootstrap.min.css" rel="stylesheet" />
+<style type="text/css">
+    .erro{
+        color: red;
+        font-weight: bold;
+        font-size: 25px;
+    }
+</style>

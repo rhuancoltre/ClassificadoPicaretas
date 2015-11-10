@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Projetos/Picaretas/web/WEB-INF/paginas/login.jsp</file>
-            <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/modelo/Dao.java</file>
+            <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/controle/ConsultaServlet.java</file>
+            <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/filtros/LoginFiltro.java</file>
             <file>file:/D:/Projetos/Picaretas/web/WEB-INF/includes/head.jsp</file>
             <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/controle/LoginServlet.java</file>
-            <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/filtros/ConexaoFiltro.java</file>
             <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/modelo/UsuarioDAO.java</file>
         </group>
     </open-files>

@@ -6,43 +6,67 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String mensagemErro = (String) request.getAttribute("mensagem_erro");
+%>
 <html>
     <head>
         <%@include file="/WEB-INF/includes/head.jsp" %>
-        <title>Login</title>
+        <title>Picaretas Login</title>
+
+        <style type="text/css">
+            /*
+            Código CSS para ajustar o tamanho dos formulários
+            */
+            .control-group .control-label {
+                width: 80px !important;
+            }
+            .form-horizontal .controls {
+                margin-left: 100px !important;
+            }
+        </style>
     </head>
     <body>
+        <% if (mensagemErro != null) {%>
+        <p class="erro"><%= mensagemErro%></p>
+        <% }%>
         <h1> PICARETAS</h1>
-        <h2>Login </h2>
-        <form name="form-login" method="POST" action="Login">
-            <input type="hidden" name="acao" value="login" />
-            <label>Usuario/E-mail: </label>
-            <input type="text" name="usuario" value="" />
-            <br />
-            <label>Senha: </label>
-            <input type="password" name="senha" value="" />
-            <br />
+        <div class="span5" >
+            <h2>Login </h2>
+            <form name="form-login" method="POST" action="Login" 
+                  class="form-horizontal">
+                <input type="hidden" name="acao" value="login" />
+                <label>Apelido/E-mail: </label>
+                <input type="text" name="apelido" value="" />
+                <br />
+                <label>Senha: </label>
+                <input type="password" name="senha" value="" />
+                <br />
+                <br />
 
-            <input type="submit" name="Entrar" />
+                <input type="submit" name="Entrar" />
 
-        </form>
-        <br />
-        <h2>Cadastro </h2>
-        <form name="form-cadastro" method="POST" action="Login"> 
-            <input type="hidden" name="acao" value="cadastro" />
-            <label>Apelido </label>
-            <input type="text" name="apelido" value="" />
-            <br />
-            <label>E-mail: </label>
-            <input type="text" name="email" value="" />
-            <br />
-            <label>Senha: </label>
-            <input type="password" name="senha" value="" />
-            <br />
-            <input type="submit" name="Cadastrar" />
+            </form>
+        </div>
 
 
-        </form>
+        <div class="span5" >
+            <h2>Cadastro </h2>
+            <form name="form-cadastro" method="POST" action=""
+                  class="form-horizontal" style="float: left"> 
+                <input type="hidden" name="acao" value="cadastro" />
+                <label>Apelido </label>
+                <input type="text" name="apelido" value="" />
+                <br />
+                <label>E-mail: </label>
+                <input type="text" name="email" value="" />
+                <br />
+                <label>Senha: </label>
+                <input type="password" name="senha" value="" />
+                <br />
+                <input type="submit" name="Cadastrar" />
+            </form>
+        </div>
 
     </body>
 </html>

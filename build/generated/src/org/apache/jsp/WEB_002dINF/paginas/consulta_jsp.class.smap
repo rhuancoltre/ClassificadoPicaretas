@@ -1,0 +1,14 @@
+SMAP
+consulta_jsp.java
+JSP
+*S JSP
+*F
++ 0 consulta.jsp
+WEB-INF/paginas/consulta.jsp
++ 1 head.jsp
+WEB-INF/includes/head.jsp
+*L
+5,7:49
+6#1,9:56
+11#0,8:64
+*E
