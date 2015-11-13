@@ -17,4 +17,15 @@
         font-weight: bold;
         font-size: 25px;
     }
+    table {
+        border-collapse: collapse;
+    }
+    
+    table, th, td {
+        border: 2px solid black;
+    }
+    th, td {
+        padding: 5px;
+    }
+    
 </style>

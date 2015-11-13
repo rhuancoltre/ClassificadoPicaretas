@@ -1,7 +1,7 @@
 package br.grupointegrado.ads.picaretas.controle;
 
 import br.grupointegrado.ads.picaretas.modelo.Usuario;
-import br.grupointegrado.ads.picaretas.modelo.UsuarioDAO;
+import br.grupointegrado.ads.picaretas.modelo.UsuarioDao;
 import java.io.IOException;
 import java.sql.Connection;
 import javax.servlet.ServletException;
@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Verificando se o usuario enviou atraves do formulario Login ou Cadastro
         String acaoParam = req.getParameter("acao");
         if ("login".equals(acaoParam)) {
             login(req, resp);
@@ -42,21 +43,20 @@ public class LoginServlet extends HttpServlet {
      */
     private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            //Passando apelido e senha como uma String.
             String apelido = req.getParameter("apelido");
             String senha = req.getParameter("senha");
-
-            Connection conexao = (Connection) req.getAttribute("conexao"); // Pegando do Banco o Usuario
-            UsuarioDAO dao = new UsuarioDAO(conexao);
+            //Fazendo uma Conexao
+            Connection conexao = (Connection) req.getAttribute("conexao"); 
+            UsuarioDao dao = new UsuarioDao(conexao);   // Pegando do Banco o Usuario
 
             Usuario usuario = dao.consultaEmailSenha(apelido, senha);
             if (usuario != null) {
-
                 //logado
                 HttpSession sessao = req.getSession();
                 sessao.setAttribute("usuario_logado", usuario);
                 resp.sendRedirect("Consulta");
             } else {
-
                 //Usuario ou senha incorreto
                 req.setAttribute("mensagem_erro", "Apelido/E-mail ou senha incorretos");
                 doGet(req, resp);
@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
             //Recupero a conexão aberta pelo filtro
             Connection conexao = (Connection) req.getAttribute("conexao");
             // Cria uma Instancia do DAO
-            UsuarioDAO dao = new UsuarioDAO(conexao);
+            UsuarioDao dao = new UsuarioDao(conexao);
             dao.inserir(usuario);
 
         } catch (Exception ex) {

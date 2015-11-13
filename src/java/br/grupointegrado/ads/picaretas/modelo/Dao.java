@@ -26,6 +26,8 @@ public abstract class Dao<T> {
 
     public abstract void atualizar(T objeto) throws SQLException;
 
+    public abstract T consultaId(int... ids) throws SQLException;
+    
     /**
      * Método para executar comandos do Banco de Dados. (Como INSERT, DELETE,
      * UPDATE, ALTER TABLE, ... etc)
@@ -60,7 +62,7 @@ public abstract class Dao<T> {
      */
     public List<T> consultaSql(String sql, Object... parametros) throws SQLException {
         PreparedStatement ps = conexao.prepareStatement(sql);
-        if (parametros != null) { //Verificando se ele nao esta vindo vazio
+        if (parametros != null) { //Verificando se parametros nao esta vindo vazio
             for (int i = 0, j = 1; i < parametros.length; i++, j++) {
                 Object obj = parametros[i];
                 ps.setObject(j, obj);

@@ -10,9 +10,9 @@ import java.util.function.Consumer;
  *
  * @author Rhuan Coltre
  */
-public class UsuarioDAO extends Dao<Usuario> {
+public class UsuarioDao extends Dao<Usuario> {
 
-    public UsuarioDAO(Connection conexao) {
+    public UsuarioDao(Connection conexao) {
         super(conexao);
     }
 
@@ -81,4 +81,17 @@ public class UsuarioDAO extends Dao<Usuario> {
 
     }
 
+    public Usuario consultaId(int... Ids) throws SQLException {
+        String sql = " SELECT * FROM usuario WHERE id = ? ";
+
+        List<Usuario> usuarios = consultaSql(sql, Ids[0]);
+
+        //Comparando se produtos for vazio.
+        if (usuarios.isEmpty()) {
+            return null;
+        }
+        //(SE NAO) Se usuario nao for nulo, entao retorna primeira posição
+        return usuarios.get(0);
+
+    }
 }
