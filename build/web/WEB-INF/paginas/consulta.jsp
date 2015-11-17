@@ -4,9 +4,15 @@
     Author     : Rhuan Coltre
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="br.grupointegrado.ads.picaretas.modelo.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+    String mensagemErro = (String) request.getAttribute("mensagem_erro");
+%>
+
 <html>
     <head>
         <%@include file="/WEB-INF/includes/head.jsp" %>
@@ -14,28 +20,41 @@
     </head>
     <body>
         <h1>Página de consulta de produtos</h1>
+        <% if (mensagemErro != null) {%>
+        <p class="erro"><%= mensagemErro%></p>
+        <% }%>
         <br />
         <form method="GET" action="Consulta">
             <label>Buscar</label>
             <input type="text" name="busca" value="" />
-            <input type="submit" value="Buscar" />
+            <input type="submit" value="Buscar" class="btn btn-inverse"/>
+            
         </form>
         <br />
         <table style="border-style: 2"> 
 
             <tr>
-                <th>Produto</th>
+                <th colspan="2">Produto</th>
                 <th>Valor</th>
                 <th>Categoria</th>
                 <th>Data/Hora</th>
+            </tr>
 
-            </tr>
+            <!-- Preencher tabela -->
+            <%
+                if (produtos != null) {
+                    for (Produto prod : produtos) {
+
+            %>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>  
+                <td><%= prod.getDescricao()%></td>
+                <td><%= prod.getValorString()%></td>
+                <td><%= prod.getCategoria().getDescricao()%></td>
+                <td><%= prod.getDataPostagemString()%></td>
             </tr>
+            <%                    }
+                }
+            %>
 
         </table>
 

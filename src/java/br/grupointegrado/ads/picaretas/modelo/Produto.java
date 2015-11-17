@@ -1,5 +1,6 @@
 package br.grupointegrado.ads.picaretas.modelo;
 
+import br.grupointegrado.ads.picaretas.util.Util;
 import java.util.Date;
 
 /**
@@ -46,12 +47,19 @@ public class Produto {
         return dataPostagem;
     }
 
+    public String getDataPostagemString(){
+        return Util.dataHoraParaString(dataPostagem);
+    }
     public void setDataPostagem(Date dataPostagem) {
         this.dataPostagem = dataPostagem;
     }
 
     public double getValor() {
         return valor;
+    }
+    
+    public String getValorString() {
+        return Util.doubleParaString(valor);
     }
 
     public void setValor(double valor) {

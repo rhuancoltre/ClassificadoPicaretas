@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ProdutoDao extends Dao<Produto> {
 
+    
     public ProdutoDao(Connection conexao) {
         super(conexao);
     }
@@ -64,7 +65,7 @@ public class ProdutoDao extends Dao<Produto> {
         p.setDescricao(resultado.getString("descricao"));
         p.setDetalhes(resultado.getString("detalhes"));
         p.setValor(resultado.getFloat("valor"));
-        p.setCategoria(null);
+        p.setCategoria(new Categoria());
         p.setDataPostagem(resultado.getTimestamp("data_postagem"));
         p.setVendido(resultado.getBoolean("vendido"));
 
@@ -90,6 +91,13 @@ public class ProdutoDao extends Dao<Produto> {
         return produtos.get(0);
     }
 
+    /**
+     * Consulta produtos através da Descrição
+     *
+     * @param descricao
+     * @return
+     * @throws SQLException
+     */
     public List<Produto> consultaDescricao(String descricao) throws SQLException {
         String sql = " SELECT * FROM produto WHERE descricao LIKE ? ";
 
