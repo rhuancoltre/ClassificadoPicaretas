@@ -12,7 +12,7 @@
 <html>
     <head>
         <%@include file="/WEB-INF/includes/head.jsp" %>
-        <title>Picaretas Login</title>
+        <title>Login Picaretas</title>
 
         <style type="text/css">
             /*
@@ -30,7 +30,7 @@
         <% if (mensagemErro != null) {%>
         <p class="erro"><%= mensagemErro%></p>
         <% }%>
-        <h1> PICARETAS</h1>
+        <h1>Welcome to homepage the Picaretas</h1>
         <div class="span5" >
             <h2>Login </h2>
             <form name="form-login" method="POST" action="Login" 

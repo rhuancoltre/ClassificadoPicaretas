@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Projetos/Picaretas/web/WEB-INF/paginas/consulta.jsp</file>
+            <file>file:/D:/Projetos/Picaretas/src/java/br/grupointegrado/ads/picaretas/modelo/ProdutoDao.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -20,12 +20,15 @@
     table {
         border-collapse: collapse;
     }
-    
+
     table, th, td {
         border: 2px solid black;
     }
     th, td {
         padding: 5px;
     }
-    
+    body {
+        background-color: #FFF;
+    }
+
 </style>

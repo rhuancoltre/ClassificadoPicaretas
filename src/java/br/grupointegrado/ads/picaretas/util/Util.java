@@ -11,6 +11,12 @@ import java.util.Date;
  */
 public class Util {
 
+    /**
+     * Converte String para Inteiro
+     *
+     * @param valor
+     * @return
+     */
     public static int stringParaInt(String valor) {
         try {
             return Integer.parseInt(valor);
@@ -19,6 +25,7 @@ public class Util {
             return 0;
         }
     }
+
     private static SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 
     public static Date stringParaData(String data) {
@@ -31,13 +38,12 @@ public class Util {
     }
 
     /**
-     * Convete Data para String no formato dd/MM/yyyy
+     * Converte data para String no formato dd/MM/yyyy
      *
      * @param data
      * @return
      */
     public static String dataParaString(Date data) {
-
         if (data == null) {
             return "";
         }
@@ -45,7 +51,7 @@ public class Util {
     }
 
     /**
-     * Converte String para Double
+     * Converte uma String para Double
      *
      * @param valor
      * @return
@@ -60,7 +66,7 @@ public class Util {
     }
 
     /**
-     * Converte a Data do tipo java.Util.Date para java.sql.Date
+     * Converte a data do tipo java.util.Date para java.sql.Date
      *
      * @param data
      * @return
@@ -77,33 +83,47 @@ public class Util {
     }
 
     /**
-     * Converte Objeto Date para TimeStamp
+     * Converte objeto Date para Timestamp
      *
      * @param data
      * @return
      */
-    public static Timestamp dataParaTimeStamp(Date data) {
+    public static Timestamp dataParaTimestamp(Date data) {
         try {
             long milisegundos = data.getTime();
-            Timestamp time = new Timestamp(data.getTime());
+            Timestamp time = new Timestamp(milisegundos);
             return time;
-
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
     }
-    
-    private static DecimalFormat decimalFormat = new DecimalFormat("#,###,###,##0.00");
-            
+
+    private static DecimalFormat decimalFormat = new DecimalFormat("#,###,###,##0.00"); // dd/MM/yyyy
+
+    /**
+     * Converte uma string formatada para float. Exemplo: String "12,65" para
+     * float 12.65
+     *
+     * @param valor
+     * @return
+     */
+    public static float stringFormatadaParaFloat(String valor) {
+        try {
+            return decimalFormat.parse(valor).floatValue();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+
     public static String doubleParaString(double valor) {
         return decimalFormat.format(valor);
     }
-    
+
     private static SimpleDateFormat formataDataHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    
+
     public static String dataHoraParaString(Date dataHora) {
         return formataDataHora.format(dataHora);
     }
-
 }

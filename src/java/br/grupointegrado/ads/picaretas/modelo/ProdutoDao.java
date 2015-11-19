@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class ProdutoDao extends Dao<Produto> {
 
-    
     public ProdutoDao(Connection conexao) {
         super(conexao);
     }
@@ -27,7 +26,7 @@ public class ProdutoDao extends Dao<Produto> {
                 objeto.getDetalhes(),
                 objeto.getValor(),
                 objeto.getCategoria().getId(),
-                Util.dataParaTimeStamp(objeto.getDataPostagem()),
+                Util.dataParaTimestamp(objeto.getDataPostagem()),
                 objeto.getUsuario().getId());
     }
 
@@ -51,26 +50,30 @@ public class ProdutoDao extends Dao<Produto> {
                 objeto.getDetalhes(),
                 objeto.getValor(),
                 objeto.getCategoria().getId(),
-                Util.dataParaTimeStamp(objeto.getDataPostagem()),
+                Util.dataParaTimestamp(objeto.getDataPostagem()),
                 objeto.getUsuario().getId(),
                 objeto.isVendido(),
                 objeto.getId());
     }
 
+    private CategoriaDao categoriaDao = new CategoriaDao(conexao);
+    private UsuarioDao usuarioDao = new UsuarioDao(conexao);
+
     @Override
     public Produto montaObjeto(ResultSet resultado) throws SQLException {
         Produto p = new Produto();
-
         p.setId(resultado.getInt("id"));
         p.setDescricao(resultado.getString("descricao"));
         p.setDetalhes(resultado.getString("detalhes"));
         p.setValor(resultado.getFloat("valor"));
-        p.setCategoria(new Categoria());
         p.setDataPostagem(resultado.getTimestamp("data_postagem"));
         p.setVendido(resultado.getBoolean("vendido"));
 
+        //Consultando no banco ID
+        Categoria categoria = categoriaDao.consultaId(resultado.getInt("id_categoria"));
+        p.setCategoria(categoria);
+
         //Pegar ID atraves do DAO de usuarioDao
-        UsuarioDao usuarioDao = new UsuarioDao(conexao);
         Usuario usuario = usuarioDao.consultaId(resultado.getInt("id_usuario"));
         p.setUsuario(usuario);
 
@@ -80,7 +83,7 @@ public class ProdutoDao extends Dao<Produto> {
 
     @Override
     public Produto consultaId(int... ids) throws SQLException {
-        String sql = " SELECT * FROM prodtuo WHERE id = ? ";
+        String sql = " SELECT * FROM produto WHERE id = ? ";
 
         List<Produto> produtos = consultaSql(sql, ids[0]);
         //Comparando se produtos for vazio.
@@ -101,9 +104,7 @@ public class ProdutoDao extends Dao<Produto> {
     public List<Produto> consultaDescricao(String descricao) throws SQLException {
         String sql = " SELECT * FROM produto WHERE descricao LIKE ? ";
 
-        List<Produto> produtos = consultaSql(sql, "%" + descricao + "%");
-
-        return produtos;
+        return consultaSql(sql, "%" + descricao + "%");
     }
 
 }

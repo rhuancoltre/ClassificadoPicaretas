@@ -19,11 +19,13 @@
         <title>Consulta de produtos</title>
     </head>
     <body>
-        <h1>Página de consulta de produtos</h1>
+        <h1>Page for query the products</h1>
         <% if (mensagemErro != null) {%>
         <p class="erro"><%= mensagemErro%></p>
         <% }%>
-        <br />
+        
+        <button onclick="window.location='Produto'"> Anunciar </button>
+        <br /><br />
         <form method="GET" action="Consulta">
             <label>Buscar</label>
             <input type="text" name="busca" value="" />
@@ -47,6 +49,7 @@
 
             %>
             <tr>
+                <td></td>
                 <td><%= prod.getDescricao()%></td>
                 <td><%= prod.getValorString()%></td>
                 <td><%= prod.getCategoria().getDescricao()%></td>
